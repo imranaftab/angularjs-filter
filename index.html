@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Angular JS Learning</title>
+		<!-- Angular JS CDN -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		
+	</head>
+	<body>
+		<!-- Angular JS Application Starts Here -->
+		
+		<div ng-app="app1" ng-controller="MController">
+			<div>{{hello | uppercase}}
+			</div>
+			<div>{{hi | lowercase}}
+			</div>
+			<hr/>
+			<input type="text" ng-model="search" length="20"/>
+			<div ng-repeat="x in products| filter:search">{{x.name }}
+			</div>
+			<hr/>
+			<button ng-click="orderBy('name')">Order By Product Name </button><pre>         </pre>
+			<button ng-click="orderBy('price')">Order By Product Price </button>
+			<ul>
+				<li ng-repeat="x in products | orderBy:currentOrder ">{{x.name}} {{x.price}}</li>
+			</ul>
+		<script>
+			var myApp = angular.module("app1",[]);
+			myApp.controller('MController',function($scope){
+				$scope.products = [{name:"Tea",price:10},{name:"Biscuit",price:1},{name:"Patiz",price:12},{name:"Sweet",price:14}];
+				$scope.hello = "Hello World";
+				$scope.hi = "HI";
+				$scope.orderBy = function(x) {
+				$scope.currentOrder = x;
+			  }
+			});
+		</script>
+		
+		</div>
+		
+	</body>
+</html>
